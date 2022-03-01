@@ -19,10 +19,10 @@ import service.SmsService;
 
 public class SmsController {
 	
-	@Autowired
+	
 	private final SmsService smsService;
 
-	
+	@Autowired
 	public SmsController(SmsService smsService) {
 		super();
 		this.smsService = smsService;
