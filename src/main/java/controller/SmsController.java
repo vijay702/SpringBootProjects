@@ -1,7 +1,11 @@
 package controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +23,10 @@ import service.SmsService;
 
 public class SmsController {
 	
+	private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(SmsController.class);
+	
+	
+	private static final String HOST = "localhost";
 	
 	private final SmsService smsService;
 
@@ -30,9 +38,33 @@ public class SmsController {
 
 	
 	@PostMapping("/api/sms")
-	public void sendSms (@Valid @RequestBody SmsRequest smsRequest) {
+
+	public void sendSms (@Valid @RequestBody SmsRequest smsRequest) throws UnknownHostException  {
 		
-		smsService.sendSms(smsRequest);
+		Boolean isConnected =!HOST.equals(InetAddress.getLocalHost().getHostAddress().toString());
+		
+		try {
+			
+			if(isConnected) {
+				
+				LOGGER.debug("sending sms");
+				
+				smsService.sendSms(smsRequest);
+				
+			}
+		}catch (Exception ex) {
+			
+			throw new UnknownHostException("please connect with internet" +ex);
+			
+		}
+		
+		/*if(isConnected){
+			LOGGER.debug("sending sms");
+			
+			smsService.sendSms(smsRequest);
+		}*/
+		
+	
 	}
 	
 	

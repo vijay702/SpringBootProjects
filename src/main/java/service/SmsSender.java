@@ -1,9 +1,13 @@
 package service;
 
+import org.springframework.scheduling.annotation.Scheduled;
+
+
 import model.SmsRequest;
 
 public interface SmsSender {
-	
-	void sendSms(SmsRequest smsRequetst);
+    
+	@Scheduled(fixedRate = 5000L)
+	void sendSms(SmsRequest smsRequetst) ;
 
 }

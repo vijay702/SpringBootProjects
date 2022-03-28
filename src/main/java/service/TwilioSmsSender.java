@@ -8,6 +8,7 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.rest.api.v2010.account.MessageCreator;
 import com.twilio.type.PhoneNumber;
 
+
 import configuration.TwilioConfiguration;
 import model.SmsRequest;
 
@@ -17,19 +18,25 @@ import model.SmsRequest;
 @Service("twilio")
 public class TwilioSmsSender implements SmsSender {
 	
+	
+	
 	private static final Logger LOGGER = org.slf4j.LoggerFactory.getLogger(TwilioSmsSender.class);
 	
 	private final TwilioConfiguration twilioConfiguration;
 	
    @Autowired
+  
 	public TwilioSmsSender(TwilioConfiguration twilioConfiguration) {
 		super();
 		this.twilioConfiguration = twilioConfiguration;
 	}
 
-
-	@Override
-	public void sendSms(SmsRequest smsRequest) {
+ 
+   @Override	 
+	public void sendSms(SmsRequest smsRequest)   {
+	   
+	
+	   
 		if(isPhoneNumberValid(smsRequest.getPhoneNumber())) {
 		 PhoneNumber to = new  PhoneNumber(smsRequest.getPhoneNumber());
 			PhoneNumber from = new PhoneNumber(twilioConfiguration.getTrialNumber());
@@ -46,6 +53,11 @@ public class TwilioSmsSender implements SmsSender {
 		
 	}
 
+ /*  @Scheduled(fixedRate = 5000L)
+   public void printSomething() {
+	   
+	   LOGGER.info("HElloooooo");
+   } */
 
 	private boolean isPhoneNumberValid(String phoneNumber) {
 		// TODO implement phone number 

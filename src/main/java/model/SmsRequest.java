@@ -11,23 +11,33 @@ public class SmsRequest {
 
 	
 
-	private final Long id;
+	private  Long id;
 	
-	@NotBlank
-	private final String phoneNumber;
-	
-	@NotBlank
-	private final String message;
-	
- 
-  
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getMessage() {
-		return message;
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+
+	@NotBlank
+	private  String phoneNumber;
+	
+	@NotBlank
+	private  String message;
+	
+ 
+
+
+
 
 	public SmsRequest(Long id,@JsonProperty("phoneNumber")  String phoneNumber,@JsonProperty("message") String message) {
 		this.phoneNumber = phoneNumber;
@@ -35,9 +45,21 @@ public class SmsRequest {
 		this.id = id;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
+
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+	public String getMessage() {
+		return message;
+	}
+
 
 	@Override
 	public String toString() {

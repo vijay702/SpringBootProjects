@@ -1,6 +1,9 @@
+server:
+  port: 8081
+
 twilio:
   account_sid: AC0aa94b1bc61266de346803ac86371970
-  auth_token:  001f49d85a154022986c08c62f749ae9
+  auth_token:  9a4f67b585936770f8cedb260adb3e58
   trial_number: +19034209311
   
 spring:
@@ -15,3 +18,5 @@ spring:
     url: jdbc:h2:mem:sms
     driverClassName: org.h2.Driver
     password: password
+    
+    
