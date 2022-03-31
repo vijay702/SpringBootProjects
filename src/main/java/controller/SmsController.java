@@ -54,7 +54,7 @@ public class SmsController {
 			}
 		}catch (Exception ex) {
 			
-			throw new UnknownHostException("please connect with internet" +ex);
+			throw new UnknownHostException("please connect  internet in your device" +ex);
 			
 		}
 		
